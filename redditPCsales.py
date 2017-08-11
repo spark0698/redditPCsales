@@ -1,9 +1,18 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import praw
 import time
 
-r = praw.Reddit()
+c = open("yas.txt", "r")
+creds = c.read().splitlines()
+
+r = praw.Reddit(client_id = creds[0],
+                client_secret = creds[1],
+                username = creds[2],
+                password = creds[3],
+                user_agent = creds[4])
+
+c.close()
 
 def run_bot():
     subreddit = r.subreddit("test")
